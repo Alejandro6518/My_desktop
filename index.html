@@ -30,7 +30,7 @@
             <div class="widget">
                 <h3> widget 02</h3>
             </div>
-            
+
             <div class="widget">
                 <h3> widget 03</h3>
             </div>
@@ -39,8 +39,17 @@
 </body>
 
 <script>
-var sp = "/";
+try {
+    var loadNotes = localStorage.getItem("notes");
+}
+catch(err){
+    var loadNotes = "Enter your notes here and click 'Save' ";
+}
 
+$("#note-area").val(loadNotes);
+
+    
+var sp = "/";
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1; //As Jan. is 0.
@@ -50,6 +59,11 @@ if(dd<10) dd='0'+dd;
 if(mm<10) mm='0'+mm;
 
 $("#date").html(mm+sp+dd+sp+yyyy);
+
+$("#saveNoteBtn").click(function(){
+    var currentNotes = $("#note-area").val();localStorage.setItem("notes", currentNotes);
+});
+
 </script>
 </html>
 
